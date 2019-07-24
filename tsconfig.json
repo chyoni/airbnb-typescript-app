@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "noEmit": true,
     "lib": ["es6", "dom", "esnext"],
     "jsx": "react-native",
     "target": "es5",
+    "module": "commonjs",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
@@ -16,7 +16,16 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "esModuleInterop": true,
-    "sourceMap": true,
-    "allowJs": true
-  }
+    "sourceMap": true, // 소스맵 (.map) 파일 생성 여부
+    "allowJs": true, // 자바스크립트 파일 컴파일 허용 여부
+    "traceResolution": false // 모듈 검색에 대한 로그메세지 출력 여부
+  },
+  "exclude": [
+    "node_modules",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts"
+  ]
 }

@@ -25,7 +25,7 @@ export default function App() {
 
   return loaded ? (
     <View>
-      <Text>loading success</Text>
+      <Text>loading success!!!!!!!!!!!!</Text>
     </View>
   ) : (
     <AppLoading />
