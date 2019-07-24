@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, AsyncStorage } from "react-native";
+import { View, AsyncStorage, Text } from "react-native";
 import { AppLoading } from "expo";
 import { Asset } from "expo-asset";
 import * as Font from "expo-font";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
-import ApolloClient, { Operation, PresetConfig } from "apollo-boost";
+import ApolloClient, { Operation } from "apollo-boost";
 import apolloOptions from "./Apollo";
+import { ApolloProvider } from "react-apollo-hooks";
+import { AuthProvider } from "./AuthContext";
 
 export default function App() {
   const [loaded, setLoaded] = useState<boolean>(false);
   const [clientReady, setClientReady] = useState<any>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState<any>(null);
   const preLoad = async () => {
     await Font.loadAsync({
       ...Ionicons.font,
@@ -28,7 +31,7 @@ export default function App() {
       storage: AsyncStorage
     });
 
-    const client = new ApolloClient<PresetConfig>({
+    const client = new ApolloClient({
       cache,
       ...apolloOptions,
       request: async (operation: Operation) => {
@@ -36,6 +39,14 @@ export default function App() {
         operation.setContext({ headers: { Authorization: `Bearer ${token}` } });
       }
     });
+
+    const isLoggedInCheck = await AsyncStorage.getItem("isLoggedIn");
+    if (isLoggedInCheck === null || isLoggedInCheck === "false") {
+      setIsLoggedIn(false);
+    } else {
+      setIsLoggedIn(true);
+    }
+
     setClientReady(client);
     setLoaded(true);
   };
@@ -44,11 +55,15 @@ export default function App() {
     preLoad();
   }, []);
 
-  if (loaded && clientReady) {
+  if (loaded && clientReady && isLoggedIn !== null) {
     return (
-      <View>
-        <Text>loading ok!</Text>
-      </View>
+      <ApolloProvider client={clientReady}>
+        <AuthProvider isLoggedIn={isLoggedIn}>
+          <View>
+            <Text>GOGOGOGO</Text>
+          </View>
+        </AuthProvider>
+      </ApolloProvider>
     );
   } else {
     return <AppLoading />;
