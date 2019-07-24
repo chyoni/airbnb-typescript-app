@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "noEmit": true,
-    "lib": ["dom", "esnext"],
+    "lib": ["es6", "dom", "esnext"],
     "jsx": "react-native",
     "target": "es5",
     "moduleResolution": "node",
