@@ -7,7 +7,6 @@ import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import ApolloClient, { Operation } from "apollo-boost";
-import apolloOptions from "./Apollo";
 import { ApolloProvider } from "react-apollo-hooks";
 import { AuthProvider } from "./AuthContext";
 import NavigationController from "./src/Components/NavigationController";
@@ -34,11 +33,18 @@ export default function App() {
 
     const client = new ApolloClient({
       cache,
-      ...apolloOptions,
+      uri: "http://192.168.219.103:4300/graphql",
       request: async (operation: Operation) => {
         const token = await AsyncStorage.getItem("jwt");
-        operation.setContext({ headers: { Authorization: `Bearer ${token}` } });
+        operation.setContext({
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
       }
+      // headers: {
+      //   Authorization: `Bearer ${AsyncStorage.getItem("jwt")}`
+      // }
     });
 
     const isLoggedInCheck = await AsyncStorage.getItem("isLoggedIn");

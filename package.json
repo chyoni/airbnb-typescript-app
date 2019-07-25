@@ -5,13 +5,17 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "precodegen": "apollo schema:download --endpoint=http://localhost:4300/graphql",
+    "codegen": "apollo codegen:generate src/types/api.d.ts --queries=src/**/*.queries.ts --addTypename --localSchemaFile=schema.json --target typescript --outputFlat"
   },
   "dependencies": {
     "@expo/vector-icons": "^10.0.3",
+    "apollo": "^2.16.1",
     "apollo-boost": "^0.4.3",
     "apollo-cache-inmemory": "^1.6.2",
     "apollo-cache-persist": "^0.1.1",
+    "apollo-link-context": "^1.0.18",
     "expo": "^33.0.0",
     "expo-asset": "^5.0.1",
     "expo-font": "^5.0.1",
