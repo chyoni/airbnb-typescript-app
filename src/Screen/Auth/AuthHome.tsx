@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components/native";
-import constants from "../../constants";
+import constants from "../../../constants";
 import {
   NavigationScreenProp,
   NavigationState,
   NavigationParams
 } from "react-navigation";
-import Theme from "../../Theme";
-import Button from "../Components/Button";
+import Theme from "../../../Theme";
+import Button from "../../Components/Button";
 
 const Container = styled.View`
   flex: 1;
@@ -43,7 +43,7 @@ const AuthHome: React.SFC<IProps> = ({ navigation }) => {
   return (
     <Container>
       <LogoColumn>
-        <Logo source={require("../../assets/logo.png")} />
+        <Logo source={require("../../../assets/logo.png")} />
       </LogoColumn>
       <ButtonColumn>
         <Touchable onPress={() => navigation.navigate("LogIn")}>

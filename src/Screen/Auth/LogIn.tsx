@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
 import styled from "styled-components/native";
-import TextInput from "../Components/TextInput";
-import useInput from "../Hooks/useInput";
-import constants from "../../constants";
-import Button from "../Components/Button";
-import Theme from "../../Theme";
+import TextInput from "../../Components/TextInput";
+import useInput from "../../Hooks/useInput";
+import constants from "../../../constants";
+import Button from "../../Components/Button";
+import Theme from "../../../Theme";
 import { useMutation } from "react-apollo-hooks";
-import { REQUEST_SECRET } from "../Queries.queries";
-import { requestSecret, requestSecretVariables } from "../types/api";
+import { REQUEST_SECRET } from "../../Queries.queries";
+import { requestSecret, requestSecretVariables } from "../../types/api";
 import {
   NavigationScreenProp,
   NavigationState,
@@ -30,7 +30,8 @@ interface IProps {
 
 const LogIn: React.SFC<IProps> = ({ navigation }) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const email = useInput("chiwon99881@gmail.com");
+  const email = useInput("");
+  const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const requestSecret = useMutation<requestSecret, requestSecretVariables>(
     REQUEST_SECRET,
     {
@@ -40,6 +41,10 @@ const LogIn: React.SFC<IProps> = ({ navigation }) => {
   const onClickRequestSecret = async () => {
     if (email.value === "") {
       Alert.alert("이메일을 입력해주세요🙄");
+      return;
+    } else if (!emailRegex.test(email.value)) {
+      Alert.alert("이메일을 확인해 주세요🙄");
+      return;
     } else {
       const [
         requestSecretFn,

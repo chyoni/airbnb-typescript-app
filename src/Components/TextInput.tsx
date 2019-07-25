@@ -10,6 +10,14 @@ const Input = styled<any>(TextInputByNative)`
   padding: 10px;
 `;
 
+// enum returnKeyTypes {
+//   DONE = "done",
+//   GO = "go",
+//   NEXT = "next",
+//   SEARCH = "search",
+//   SEND = "send"
+// }
+
 interface IProps {
   placeholder: string;
   onChangeText: any;
