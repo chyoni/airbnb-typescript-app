@@ -3,7 +3,13 @@ import { AsyncStorage } from "react-native";
 import { AppLoading } from "expo";
 import { Asset } from "expo-asset";
 import * as Font from "expo-font";
-import { Ionicons, FontAwesome } from "@expo/vector-icons";
+import {
+  Ionicons,
+  FontAwesome,
+  AntDesign,
+  EvilIcons,
+  SimpleLineIcons
+} from "@expo/vector-icons";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import ApolloClient, { Operation } from "apollo-boost";
@@ -18,7 +24,10 @@ export default function App() {
   const preLoad = async () => {
     await Font.loadAsync({
       ...Ionicons.font,
-      ...FontAwesome.font
+      ...FontAwesome.font,
+      ...AntDesign.font,
+      ...EvilIcons.font,
+      ...SimpleLineIcons.font
     });
     await Asset.loadAsync([
       require("./assets/noPhoto.jpg"),

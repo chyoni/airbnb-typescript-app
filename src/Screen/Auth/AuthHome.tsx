@@ -43,7 +43,9 @@ const AuthHome: React.SFC<IProps> = ({ navigation }) => {
   return (
     <Container>
       <LogoColumn>
-        <Logo source={require("../../../assets/logo.png")} />
+        <Touchable>
+          <Logo source={require("../../../assets/logo.png")} />
+        </Touchable>
       </LogoColumn>
       <ButtonColumn>
         <Touchable onPress={() => navigation.navigate("LogIn")}>
