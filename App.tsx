@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, AsyncStorage, Text } from "react-native";
+import { AsyncStorage } from "react-native";
 import { AppLoading } from "expo";
 import { Asset } from "expo-asset";
 import * as Font from "expo-font";
@@ -10,6 +10,7 @@ import ApolloClient, { Operation } from "apollo-boost";
 import apolloOptions from "./Apollo";
 import { ApolloProvider } from "react-apollo-hooks";
 import { AuthProvider } from "./AuthContext";
+import NavigationController from "./src/Components/NavigationController";
 
 export default function App() {
   const [loaded, setLoaded] = useState<boolean>(false);
@@ -59,9 +60,7 @@ export default function App() {
     return (
       <ApolloProvider client={clientReady}>
         <AuthProvider isLoggedIn={isLoggedIn}>
-          <View>
-            <Text>GOGOGOGO</Text>
-          </View>
+          <NavigationController />
         </AuthProvider>
       </ApolloProvider>
     );
