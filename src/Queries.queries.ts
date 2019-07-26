@@ -37,3 +37,29 @@ export const CREATE_ACCOUNT = gql`
     }
   }
 `;
+
+export const SEE_FEED = gql`
+  query seeFeed {
+    seeFeed {
+      id
+      thumbNail
+      caption
+      location
+      host {
+        id
+        username
+        avatar
+      }
+      isLiked
+      isCommented
+      likeCount
+      commentCount
+      maxPeopleCount
+      checkIn
+      checkOut
+      price
+      createdDate
+      createdTime
+    }
+  }
+`;

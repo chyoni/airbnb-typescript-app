@@ -73,6 +73,44 @@ export interface createAccountVariables {
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL query operation: seeFeed
+// ====================================================
+
+export interface seeFeed_seeFeed_host {
+  __typename: "User";
+  id: string;
+  username: string;
+  avatar: string | null;
+}
+
+export interface seeFeed_seeFeed {
+  __typename: "Post";
+  id: string;
+  thumbNail: string;
+  caption: string;
+  location: string;
+  host: seeFeed_seeFeed_host;
+  isLiked: boolean;
+  isCommented: boolean;
+  likeCount: number;
+  commentCount: number;
+  maxPeopleCount: number;
+  checkIn: string;
+  checkOut: string;
+  price: number;
+  createdDate: string | null;
+  createdTime: string | null;
+}
+
+export interface seeFeed {
+  seeFeed: seeFeed_seeFeed[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================

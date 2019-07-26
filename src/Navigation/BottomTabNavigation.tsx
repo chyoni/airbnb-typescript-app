@@ -11,6 +11,7 @@ import Profile from "../Screen/BottomTab/Profile";
 import { AntDesign, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 import { Text } from "react-native";
 import Theme from "../../Theme";
+import FullPost from "../Screen/Post/FullPost";
 
 const tabToStack = (initialRoute, customConfig) =>
   createStackNavigator(
@@ -20,9 +21,22 @@ const tabToStack = (initialRoute, customConfig) =>
         navigationOptions: {
           ...customConfig
         }
+      },
+      FullPost: {
+        screen: FullPost,
+        navigationOptions: {
+          headerTitle: "자세히"
+        }
       }
     },
-    {}
+    {
+      defaultNavigationOptions: {
+        headerBackTitle: null,
+        headerBackImage: (
+          <AntDesign name={"left"} size={23} color={Theme.blackColor} />
+        )
+      }
+    }
   );
 
 export default createBottomTabNavigator(
