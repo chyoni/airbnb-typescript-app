@@ -63,3 +63,16 @@ export const SEE_FEED = gql`
     }
   }
 `;
+
+export const SEARCH = gql`
+  query searchPost($term: String!, $priceGte: Int, $priceLte: Int) {
+    searchPost(term: $term, priceGte: $priceGte, priceLte: $priceLte) {
+      id
+      thumbNail
+      caption
+      location
+      likeCount
+      createdDate
+    }
+  }
+`;

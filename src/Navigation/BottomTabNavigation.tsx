@@ -43,7 +43,6 @@ export default createBottomTabNavigator(
   {
     Explore: {
       screen: tabToStack(Explore, {
-        title: "Explore",
         headerStyle: {
           borderBottomColor: "#FFFFFF",
           height: 60

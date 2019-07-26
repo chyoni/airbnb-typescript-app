@@ -111,6 +111,34 @@ export interface seeFeed {
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL query operation: searchPost
+// ====================================================
+
+export interface searchPost_searchPost {
+  __typename: "Post";
+  id: string;
+  thumbNail: string;
+  caption: string;
+  location: string;
+  likeCount: number;
+  createdDate: string | null;
+}
+
+export interface searchPost {
+  searchPost: searchPost_searchPost[];
+}
+
+export interface searchPostVariables {
+  term: string;
+  priceGte?: number | null;
+  priceLte?: number | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================

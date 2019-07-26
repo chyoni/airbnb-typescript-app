@@ -19,7 +19,7 @@ const PostContainer = styled.View`
   margin-bottom: 20px;
 `;
 const Image = styled.Image`
-  width: ${constants.width - 42};
+  width: ${constants.width - 40};
   height: ${constants.height / 2};
   border-radius: 10px;
 `;
