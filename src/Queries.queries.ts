@@ -76,3 +76,45 @@ export const SEARCH = gql`
     }
   }
 `;
+
+export const FULL_POST = gql`
+  query seeFullPost($postId: String!) {
+    seeFullPost(postId: $postId) {
+      ok
+      error
+      post {
+        id
+        thumbNail
+        caption
+        location
+        host {
+          id
+          fullName
+          avatar
+          username
+          isSelf
+        }
+        comments {
+          id
+          text
+          user {
+            username
+            avatar
+          }
+          createdDate
+          createdTime
+        }
+        isLiked
+        isCommented
+        likeCount
+        commentCount
+        maxPeopleCount
+        checkIn
+        checkOut
+        price
+        createdDate
+        createdTime
+      }
+    }
+  }
+`;

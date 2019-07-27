@@ -12,5 +12,6 @@ export default {
   greyColor: "#F9F9F9",
   boxBorder: "1px solid #e6e6e6",
   titleColor: "#484848",
-  greenColor: "#008489"
+  greenColor: "#008489",
+  borderColor: "#e6e6e6"
 };

@@ -139,6 +139,73 @@ export interface searchPostVariables {
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL query operation: seeFullPost
+// ====================================================
+
+export interface seeFullPost_seeFullPost_post_host {
+  __typename: "User";
+  id: string;
+  fullName: string | null;
+  avatar: string | null;
+  username: string;
+  isSelf: boolean;
+}
+
+export interface seeFullPost_seeFullPost_post_comments_user {
+  __typename: "User";
+  username: string;
+  avatar: string | null;
+}
+
+export interface seeFullPost_seeFullPost_post_comments {
+  __typename: "Comment";
+  id: string;
+  text: string;
+  user: seeFullPost_seeFullPost_post_comments_user;
+  createdDate: string | null;
+  createdTime: string | null;
+}
+
+export interface seeFullPost_seeFullPost_post {
+  __typename: "Post";
+  id: string;
+  thumbNail: string;
+  caption: string;
+  location: string;
+  host: seeFullPost_seeFullPost_post_host;
+  comments: seeFullPost_seeFullPost_post_comments[];
+  isLiked: boolean;
+  isCommented: boolean;
+  likeCount: number;
+  commentCount: number;
+  maxPeopleCount: number;
+  checkIn: string;
+  checkOut: string;
+  price: number;
+  createdDate: string | null;
+  createdTime: string | null;
+}
+
+export interface seeFullPost_seeFullPost {
+  __typename: "SeeFullPostResponse";
+  ok: boolean;
+  error: string | null;
+  post: seeFullPost_seeFullPost_post | null;
+}
+
+export interface seeFullPost {
+  seeFullPost: seeFullPost_seeFullPost;
+}
+
+export interface seeFullPostVariables {
+  postId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================

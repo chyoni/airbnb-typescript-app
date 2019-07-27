@@ -185,7 +185,6 @@ interface IProps {
 const ExplorePresenter: React.SFC<
   IProps & Partial<NavigationInjectedProps>
 > = ({ term, shouldFetch, navigation }) => {
-  const [refetchLoading, setRefetchLoading] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const priceGte = useInput("");
   const priceLte = useInput("");
@@ -233,7 +232,7 @@ const ExplorePresenter: React.SFC<
       }
     }
   };
-  if (refetchLoading || loading || searchLoading) {
+  if (loading || searchLoading) {
     return <Loader />;
   } else {
     return (
