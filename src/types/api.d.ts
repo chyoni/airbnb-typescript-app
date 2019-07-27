@@ -206,6 +206,37 @@ export interface seeFullPostVariables {
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL mutation operation: makeReservation
+// ====================================================
+
+export interface makeReservation_makeReservation_reservation {
+  __typename: "Reservation";
+  id: string;
+}
+
+export interface makeReservation_makeReservation {
+  __typename: "MakeReservationResponse";
+  ok: boolean;
+  error: string | null;
+  reservation: makeReservation_makeReservation_reservation | null;
+}
+
+export interface makeReservation {
+  makeReservation: makeReservation_makeReservation;
+}
+
+export interface makeReservationVariables {
+  postId: string;
+  guestCount: number;
+  arriveAt: string;
+  leaveAt: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================

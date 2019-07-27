@@ -118,3 +118,25 @@ export const FULL_POST = gql`
     }
   }
 `;
+
+export const MAKE_RESERVE = gql`
+  mutation makeReservation(
+    $postId: String!
+    $guestCount: Int!
+    $arriveAt: String!
+    $leaveAt: String!
+  ) {
+    makeReservation(
+      postId: $postId
+      guestCount: $guestCount
+      arriveAt: $arriveAt
+      leaveAt: $leaveAt
+    ) {
+      ok
+      error
+      reservation {
+        id
+      }
+    }
+  }
+`;
