@@ -168,13 +168,56 @@ const ModalHorizontal = styled.View`
   width: ${constants.width - 20};
   justify-content: flex-end;
 `;
-
+const CommentModalContainer = styled.View`
+  padding: 15px;
+  display: flex;
+  width: ${constants.width};
+`;
+const CommentModalTitle = styled.Text`
+  font-size: 30px;
+  color: ${Theme.titleColor};
+  font-weight: 600;
+  margin-bottom: 30px;
+`;
+const CommentCard = styled.View`
+  display: flex;
+  padding: 30px;
+  width: ${constants.width - 30};
+  margin-bottom: 30px;
+  border-top-color: ${Theme.borderColor};
+  border-top-width: 1px;
+  border-bottom-color: ${Theme.borderColor};
+  border-bottom-width: 1px;
+`;
+const CardHeader = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: ${constants.width - 30};
+  margin-bottom: 30px;
+`;
+const CardHeaderAvatar = styled.View`
+  display: flex;
+  justify-content: center;
+  width: 15%;
+`;
+const CardHeaderInfo = styled.View`
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  margin-left: 10px;
+`;
+const CardComment = styled.Text`
+  color: ${Theme.blackColor};
+  font-size: 15px;
+`;
 interface IProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 }
 
 const FullPost: React.SFC<IProps> = ({ navigation }) => {
   const [reserveModal, setReserveModal] = useState<boolean>(false);
+  const [commentModal, setCommentModal] = useState<boolean>(false);
   const [loadingState, setLoadingState] = useState<boolean>(false);
   const checkInInput = useInput("");
   const checkOutInput = useInput("");
@@ -196,8 +239,11 @@ const FullPost: React.SFC<IProps> = ({ navigation }) => {
       }
     }
   );
-  const toggleModal = () => {
+  const toggleReserveModal = () => {
     setReserveModal(!reserveModal);
+  };
+  const toggleCommentModal = () => {
+    setCommentModal(!commentModal);
   };
   const onClickReserve = async () => {
     if (
@@ -297,7 +343,7 @@ const FullPost: React.SFC<IProps> = ({ navigation }) => {
                 </UserInfoField>
                 <CommentData>{fullPost.comments[0].text}</CommentData>
                 {fullPost.comments.length > 1 && (
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={toggleCommentModal}>
                     <AllComment>{`후기 ${
                       fullPost.commentCount
                     }개 모두보기`}</AllComment>
@@ -309,7 +355,7 @@ const FullPost: React.SFC<IProps> = ({ navigation }) => {
             )}
           </CommentBox>
           <Footer>
-            <TouchableOpacity onPress={toggleModal}>
+            <TouchableOpacity onPress={toggleReserveModal}>
               <Button
                 text={"예약하기"}
                 color={Theme.redColor}
@@ -325,7 +371,7 @@ const FullPost: React.SFC<IProps> = ({ navigation }) => {
         >
           <ModalView>
             <ModalHeader>
-              <TouchableOpacity onPress={toggleModal}>
+              <TouchableOpacity onPress={toggleReserveModal}>
                 <Ionicons
                   name={"ios-close"}
                   size={40}
@@ -389,6 +435,50 @@ const FullPost: React.SFC<IProps> = ({ navigation }) => {
                   </TouchableOpacity>
                 </ModalHorizontal>
               </ModalBody>
+            </ScrollView>
+          </ModalView>
+        </Modal>
+        <Modal
+          visible={commentModal}
+          animationType={"slide"}
+          transparent={false}
+        >
+          <ModalView>
+            <ModalHeader>
+              <TouchableOpacity onPress={toggleCommentModal}>
+                <Ionicons
+                  name={"ios-close"}
+                  size={40}
+                  color={Theme.blackColor}
+                />
+              </TouchableOpacity>
+            </ModalHeader>
+            <ScrollView>
+              <CommentModalContainer>
+                <CommentModalTitle>{`후기 ${
+                  fullPost.commentCount
+                }개`}</CommentModalTitle>
+                {fullPost.comments.map(comment => (
+                  <CommentCard key={comment.id}>
+                    <CardHeader>
+                      <CardHeaderAvatar>
+                        <TouchableOpacity>
+                          <Avatar
+                            width={"50px"}
+                            url={comment.user.avatar}
+                            radius={"25px"}
+                          />
+                        </TouchableOpacity>
+                      </CardHeaderAvatar>
+                      <CardHeaderInfo>
+                        <Username>{comment.user.username}</Username>
+                        <CreatedDate>{comment.createdDate}</CreatedDate>
+                      </CardHeaderInfo>
+                    </CardHeader>
+                    <CardComment>{comment.text}</CardComment>
+                  </CommentCard>
+                ))}
+              </CommentModalContainer>
             </ScrollView>
           </ModalView>
         </Modal>

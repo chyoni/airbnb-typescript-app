@@ -15,7 +15,7 @@ interface IProps {
 }
 
 const Avatar: React.SFC<IProps> = ({ width, url, radius }) => {
-  if (url === null) {
+  if (url === null || url === "") {
     return (
       <ExImage
         source={require("../../assets/noPhoto.jpg")}
