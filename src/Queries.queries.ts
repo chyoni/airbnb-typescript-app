@@ -140,3 +140,76 @@ export const MAKE_RESERVE = gql`
     }
   }
 `;
+
+export const MY_PROFILE = gql`
+  query myProfile {
+    myProfile {
+      id
+      firstName
+      lastName
+      fullName
+      avatar
+      username
+      isSelf
+      hostings {
+        id
+        thumbNail
+        caption
+        location
+        likeCount
+        createdDate
+        createdTime
+      }
+
+      reservations {
+        id
+        post {
+          id
+          thumbNail
+          caption
+          location
+          isCommented
+          isLiked
+        }
+        user {
+          id
+          username
+        }
+        guestCount
+        arriveAt
+        leaveAt
+        createdDate
+        createdTime
+      }
+      createdDate
+      createdTime
+    }
+  }
+`;
+
+export const TOGGLE_LIKE = gql`
+  mutation toggleLike($postId: String!) {
+    toggleLike(postId: $postId) {
+      ok
+      error
+    }
+  }
+`;
+
+export const ADD_COMMENT = gql`
+  mutation addComment($postId: String!, $text: String!) {
+    addComment(postId: $postId, text: $text) {
+      ok
+      error
+    }
+  }
+`;
+
+export const CANCEL_RESERVE = gql`
+  mutation cancelReservation($id: String!) {
+    cancelReservation(id: $id) {
+      ok
+      error
+    }
+  }
+`;

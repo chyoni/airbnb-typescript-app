@@ -12,6 +12,7 @@ import { AntDesign, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 import { Text } from "react-native";
 import Theme from "../../Theme";
 import FullPost from "../Screen/Post/FullPost";
+import Review from "../Screen/Review/Review";
 
 const tabToStack = (initialRoute, customConfig) =>
   createStackNavigator(
@@ -26,6 +27,12 @@ const tabToStack = (initialRoute, customConfig) =>
         screen: FullPost,
         navigationOptions: {
           headerTitle: "자세히"
+        }
+      },
+      Review: {
+        screen: Review,
+        navigationOptions: {
+          headerTitle: "후기"
         }
       }
     },
@@ -69,7 +76,9 @@ export default createBottomTabNavigator(
       }
     },
     History: {
-      screen: History,
+      screen: tabToStack(History, {
+        headerTitle: "여행"
+      }),
       navigationOptions: {
         tabBarIcon: ({ focused }) => (
           <AntDesign

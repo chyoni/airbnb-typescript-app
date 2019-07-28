@@ -237,6 +237,139 @@ export interface makeReservationVariables {
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL query operation: myProfile
+// ====================================================
+
+export interface myProfile_myProfile_hostings {
+  __typename: "Post";
+  id: string;
+  thumbNail: string;
+  caption: string;
+  location: string;
+  likeCount: number;
+  createdDate: string | null;
+  createdTime: string | null;
+}
+
+export interface myProfile_myProfile_reservations_post {
+  __typename: "Post";
+  id: string;
+  thumbNail: string;
+  caption: string;
+  location: string;
+  isCommented: boolean;
+  isLiked: boolean;
+}
+
+export interface myProfile_myProfile_reservations_user {
+  __typename: "User";
+  id: string;
+  username: string;
+}
+
+export interface myProfile_myProfile_reservations {
+  __typename: "Reservation";
+  id: string;
+  post: myProfile_myProfile_reservations_post;
+  user: myProfile_myProfile_reservations_user;
+  guestCount: number;
+  arriveAt: string;
+  leaveAt: string;
+  createdDate: string | null;
+  createdTime: string | null;
+}
+
+export interface myProfile_myProfile {
+  __typename: "User";
+  id: string;
+  firstName: string;
+  lastName: string;
+  fullName: string | null;
+  avatar: string | null;
+  username: string;
+  isSelf: boolean;
+  hostings: myProfile_myProfile_hostings[];
+  reservations: myProfile_myProfile_reservations[];
+  createdDate: string | null;
+  createdTime: string | null;
+}
+
+export interface myProfile {
+  myProfile: myProfile_myProfile;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: toggleLike
+// ====================================================
+
+export interface toggleLike_toggleLike {
+  __typename: "ToggleLikeResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface toggleLike {
+  toggleLike: toggleLike_toggleLike;
+}
+
+export interface toggleLikeVariables {
+  postId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: addComment
+// ====================================================
+
+export interface addComment_addComment {
+  __typename: "AddCommentResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface addComment {
+  addComment: addComment_addComment;
+}
+
+export interface addCommentVariables {
+  postId: string;
+  text: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: cancelReservation
+// ====================================================
+
+export interface cancelReservation_cancelReservation {
+  __typename: "CancelReservationResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface cancelReservation {
+  cancelReservation: cancelReservation_cancelReservation;
+}
+
+export interface cancelReservationVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
