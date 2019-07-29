@@ -155,6 +155,17 @@ export const MY_PROFILE = gql`
         id
         thumbNail
         caption
+        comments {
+          id
+          text
+          createdDate
+          createdTime
+          user {
+            id
+            username
+            avatar
+          }
+        }
         location
         likeCount
         createdDate
@@ -178,6 +189,17 @@ export const MY_PROFILE = gql`
         guestCount
         arriveAt
         leaveAt
+        createdDate
+        createdTime
+      }
+      comments {
+        id
+        text
+        post {
+          id
+          thumbNail
+          caption
+        }
         createdDate
         createdTime
       }
@@ -233,6 +255,74 @@ export const NOTIFICATIONS = gql`
         }
       }
       type
+      createdDate
+      createdTime
+    }
+  }
+`;
+
+export const SEE_USER = gql`
+  query seeUser($username: String!) {
+    seeUser(username: $username) {
+      id
+      firstName
+      lastName
+      fullName
+      avatar
+      username
+      isSelf
+      hostings {
+        id
+        thumbNail
+        caption
+        location
+        likeCount
+        comments {
+          id
+          text
+          createdDate
+          createdTime
+          user {
+            id
+            username
+            avatar
+          }
+        }
+        createdDate
+        createdTime
+      }
+
+      reservations {
+        id
+        post {
+          id
+          thumbNail
+          caption
+          location
+          isCommented
+          isLiked
+        }
+        user {
+          id
+          username
+        }
+        guestCount
+        arriveAt
+        leaveAt
+        createdDate
+        createdTime
+      }
+      comments {
+        id
+        text
+        post {
+          id
+          thumbNail
+          caption
+        }
+        createdDate
+        createdTime
+      }
       createdDate
       createdTime
     }

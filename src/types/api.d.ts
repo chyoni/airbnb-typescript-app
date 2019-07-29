@@ -241,11 +241,28 @@ export interface makeReservationVariables {
 // GraphQL query operation: myProfile
 // ====================================================
 
+export interface myProfile_myProfile_hostings_comments_user {
+  __typename: "User";
+  id: string;
+  username: string;
+  avatar: string | null;
+}
+
+export interface myProfile_myProfile_hostings_comments {
+  __typename: "Comment";
+  id: string;
+  text: string;
+  createdDate: string | null;
+  createdTime: string | null;
+  user: myProfile_myProfile_hostings_comments_user;
+}
+
 export interface myProfile_myProfile_hostings {
   __typename: "Post";
   id: string;
   thumbNail: string;
   caption: string;
+  comments: myProfile_myProfile_hostings_comments[];
   location: string;
   likeCount: number;
   createdDate: string | null;
@@ -280,6 +297,22 @@ export interface myProfile_myProfile_reservations {
   createdTime: string | null;
 }
 
+export interface myProfile_myProfile_comments_post {
+  __typename: "Post";
+  id: string;
+  thumbNail: string;
+  caption: string;
+}
+
+export interface myProfile_myProfile_comments {
+  __typename: "Comment";
+  id: string;
+  text: string;
+  post: myProfile_myProfile_comments_post;
+  createdDate: string | null;
+  createdTime: string | null;
+}
+
 export interface myProfile_myProfile {
   __typename: "User";
   id: string;
@@ -291,6 +324,7 @@ export interface myProfile_myProfile {
   isSelf: boolean;
   hostings: myProfile_myProfile_hostings[];
   reservations: myProfile_myProfile_reservations[];
+  comments: myProfile_myProfile_comments[];
   createdDate: string | null;
   createdTime: string | null;
 }
@@ -407,6 +441,110 @@ export interface seeNotification_seeNotification {
 
 export interface seeNotification {
   seeNotification: seeNotification_seeNotification[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: seeUser
+// ====================================================
+
+export interface seeUser_seeUser_hostings_comments_user {
+  __typename: "User";
+  id: string;
+  username: string;
+  avatar: string | null;
+}
+
+export interface seeUser_seeUser_hostings_comments {
+  __typename: "Comment";
+  id: string;
+  text: string;
+  createdDate: string | null;
+  createdTime: string | null;
+  user: seeUser_seeUser_hostings_comments_user;
+}
+
+export interface seeUser_seeUser_hostings {
+  __typename: "Post";
+  id: string;
+  thumbNail: string;
+  caption: string;
+  location: string;
+  likeCount: number;
+  comments: seeUser_seeUser_hostings_comments[];
+  createdDate: string | null;
+  createdTime: string | null;
+}
+
+export interface seeUser_seeUser_reservations_post {
+  __typename: "Post";
+  id: string;
+  thumbNail: string;
+  caption: string;
+  location: string;
+  isCommented: boolean;
+  isLiked: boolean;
+}
+
+export interface seeUser_seeUser_reservations_user {
+  __typename: "User";
+  id: string;
+  username: string;
+}
+
+export interface seeUser_seeUser_reservations {
+  __typename: "Reservation";
+  id: string;
+  post: seeUser_seeUser_reservations_post;
+  user: seeUser_seeUser_reservations_user;
+  guestCount: number;
+  arriveAt: string;
+  leaveAt: string;
+  createdDate: string | null;
+  createdTime: string | null;
+}
+
+export interface seeUser_seeUser_comments_post {
+  __typename: "Post";
+  id: string;
+  thumbNail: string;
+  caption: string;
+}
+
+export interface seeUser_seeUser_comments {
+  __typename: "Comment";
+  id: string;
+  text: string;
+  post: seeUser_seeUser_comments_post;
+  createdDate: string | null;
+  createdTime: string | null;
+}
+
+export interface seeUser_seeUser {
+  __typename: "User";
+  id: string;
+  firstName: string;
+  lastName: string;
+  fullName: string | null;
+  avatar: string | null;
+  username: string;
+  isSelf: boolean;
+  hostings: seeUser_seeUser_hostings[];
+  reservations: seeUser_seeUser_reservations[];
+  comments: seeUser_seeUser_comments[];
+  createdDate: string | null;
+  createdTime: string | null;
+}
+
+export interface seeUser {
+  seeUser: seeUser_seeUser;
+}
+
+export interface seeUserVariables {
+  username: string;
 }
 
 /* tslint:disable */

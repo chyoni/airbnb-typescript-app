@@ -8,6 +8,7 @@ import History from "../Screen/BottomTab/History";
 import Hosting from "../Screen/BottomTab/Hosting";
 import Notification from "../Screen/BottomTab/Notification";
 import MyProfile from "../Screen/BottomTab/Profile/MyProfile";
+import YourProfile from "../Screen/BottomTab/Profile/YourProfile";
 import { AntDesign, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 import { Text } from "react-native";
 import Theme from "../../Theme";
@@ -33,6 +34,12 @@ const tabToStack = (initialRoute, customConfig) =>
         screen: Review,
         navigationOptions: {
           headerTitle: "후기"
+        }
+      },
+      YourProfile: {
+        screen: YourProfile,
+        navigationOptions: {
+          headerTitle: "프로필"
         }
       }
     },

@@ -294,7 +294,13 @@ const FullPost: React.SFC<IProps> = ({ navigation }) => {
               <LeftText>{`호스트: ${fullPost.host.username}님`}</LeftText>
             </Left>
             <Right>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("YourProfile", {
+                    username: fullPost.host.username
+                  })
+                }
+              >
                 <Avatar
                   url={fullPost.host.avatar}
                   width={"100px"}
@@ -326,7 +332,13 @@ const FullPost: React.SFC<IProps> = ({ navigation }) => {
               <Comment>
                 <UserInfoField>
                   <AvatarField>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() =>
+                        navigation.navigate("YourProfile", {
+                          username: fullPost.comments[0].user.username
+                        })
+                      }
+                    >
                       <Avatar
                         width={"60px"}
                         radius={"30px"}
@@ -462,7 +474,13 @@ const FullPost: React.SFC<IProps> = ({ navigation }) => {
                   <CommentCard key={comment.id}>
                     <CardHeader>
                       <CardHeaderAvatar>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                          onPress={() =>
+                            navigation.navigate("YourProfile", {
+                              username: comment.user.username
+                            })
+                          }
+                        >
                           <Avatar
                             width={"50px"}
                             url={comment.user.avatar}
