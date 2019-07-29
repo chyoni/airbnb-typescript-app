@@ -7,7 +7,7 @@ import Explore from "../Screen/BottomTab/Explore";
 import History from "../Screen/BottomTab/History";
 import Hosting from "../Screen/BottomTab/Hosting";
 import Notification from "../Screen/BottomTab/Notification";
-import Profile from "../Screen/BottomTab/Profile";
+import MyProfile from "../Screen/BottomTab/Profile/MyProfile";
 import { AntDesign, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 import { Text } from "react-native";
 import Theme from "../../Theme";
@@ -144,7 +144,7 @@ export default createBottomTabNavigator(
       }
     },
     Profile: {
-      screen: Profile,
+      screen: MyProfile,
       navigationOptions: {
         tabBarIcon: ({ focused }) => (
           <SimpleLineIcons

@@ -370,9 +370,57 @@ export interface cancelReservationVariables {
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL query operation: seeNotification
+// ====================================================
+
+export interface seeNotification_seeNotification_user {
+  __typename: "User";
+  id: string;
+  username: string;
+  avatar: string | null;
+}
+
+export interface seeNotification_seeNotification_reservation_post {
+  __typename: "Post";
+  id: string;
+  caption: string;
+  thumbNail: string;
+  location: string;
+}
+
+export interface seeNotification_seeNotification_reservation {
+  __typename: "Reservation";
+  id: string;
+  post: seeNotification_seeNotification_reservation_post;
+}
+
+export interface seeNotification_seeNotification {
+  __typename: "Notification";
+  id: string;
+  user: seeNotification_seeNotification_user;
+  reservation: seeNotification_seeNotification_reservation | null;
+  type: NoteType;
+  createdDate: string | null;
+  createdTime: string | null;
+}
+
+export interface seeNotification {
+  seeNotification: seeNotification_seeNotification[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
+
+export enum NoteType {
+  CANCEL = "CANCEL",
+  MAKE = "MAKE",
+}
 
 //==============================================================
 // END Enums and Input Objects

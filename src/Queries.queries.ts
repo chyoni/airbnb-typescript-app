@@ -213,3 +213,28 @@ export const CANCEL_RESERVE = gql`
     }
   }
 `;
+
+export const NOTIFICATIONS = gql`
+  query seeNotification {
+    seeNotification {
+      id
+      user {
+        id
+        username
+        avatar
+      }
+      reservation {
+        id
+        post {
+          id
+          caption
+          thumbNail
+          location
+        }
+      }
+      type
+      createdDate
+      createdTime
+    }
+  }
+`;
