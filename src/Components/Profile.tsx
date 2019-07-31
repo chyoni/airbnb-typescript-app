@@ -205,7 +205,9 @@ const Profile: React.SFC<IProps & Partial<NavigationInjectedProps>> = ({
         )}
         <SectionText>인증완료 ✅</SectionText>
         {isSelf ? (
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("EditProfile", { username })}
+          >
             <SectionText
               style={{ color: Theme.greenColor, fontSize: 22, marginTop: 10 }}
             >
@@ -251,11 +253,19 @@ const Profile: React.SFC<IProps & Partial<NavigationInjectedProps>> = ({
             <CommentCard key={comment.id}>
               <CommentHeader>
                 <CommentHeaderAvatar>
-                  <Avatar
-                    width={"50px"}
-                    radius={"25px"}
-                    url={comment.user.avatar}
-                  />
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate("YourProfile", {
+                        username: comment.user.username
+                      })
+                    }
+                  >
+                    <Avatar
+                      width={"50px"}
+                      radius={"25px"}
+                      url={comment.user.avatar}
+                    />
+                  </TouchableOpacity>
                 </CommentHeaderAvatar>
                 <CommentHeaderUser>
                   <HeaderUsername>{comment.user.username}</HeaderUsername>

@@ -232,6 +232,7 @@ const ExplorePresenter: React.SFC<
       }
     }
   };
+
   if (loading || searchLoading) {
     return <Loader />;
   } else {

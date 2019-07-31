@@ -14,6 +14,7 @@ import { Text, View } from "react-native";
 import Theme from "../../Theme";
 import FullPost from "../Screen/Post/FullPost";
 import Review from "../Screen/Review/Review";
+import EditProfile from "../Screen/BottomTab/Profile/EditProfile";
 
 const tabToStack = (initialRoute, customConfig) =>
   createStackNavigator(
@@ -40,6 +41,12 @@ const tabToStack = (initialRoute, customConfig) =>
         screen: YourProfile,
         navigationOptions: {
           headerTitle: "프로필"
+        }
+      },
+      EditProfile: {
+        screen: EditProfile,
+        navigationOptions: {
+          headerTitle: "프로필 수정"
         }
       }
     },
