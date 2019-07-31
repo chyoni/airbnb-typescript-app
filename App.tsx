@@ -8,7 +8,8 @@ import {
   FontAwesome,
   AntDesign,
   EvilIcons,
-  SimpleLineIcons
+  SimpleLineIcons,
+  MaterialIcons
 } from "@expo/vector-icons";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
@@ -27,7 +28,8 @@ export default function App() {
       ...FontAwesome.font,
       ...AntDesign.font,
       ...EvilIcons.font,
-      ...SimpleLineIcons.font
+      ...SimpleLineIcons.font,
+      ...MaterialIcons.font
     });
     await Asset.loadAsync([
       require("./assets/noPhoto.jpg"),

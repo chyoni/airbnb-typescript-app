@@ -5,12 +5,12 @@ import {
 } from "react-navigation";
 import Explore from "../Screen/BottomTab/Explore";
 import History from "../Screen/BottomTab/History";
-import Hosting from "../Screen/BottomTab/Hosting";
+
 import Notification from "../Screen/BottomTab/Notification";
 import MyProfile from "../Screen/BottomTab/Profile/MyProfile";
 import YourProfile from "../Screen/BottomTab/Profile/YourProfile";
 import { AntDesign, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import Theme from "../../Theme";
 import FullPost from "../Screen/Post/FullPost";
 import Review from "../Screen/Review/Review";
@@ -107,8 +107,10 @@ export default createBottomTabNavigator(
       }
     },
     Hosting: {
-      screen: Hosting,
+      screen: View,
       navigationOptions: {
+        tabBarOnPress: ({ navigation }) =>
+          navigation.navigate("HostingNavigation"),
         tabBarIcon: ({ focused }) => (
           <AntDesign
             name={"link"}
