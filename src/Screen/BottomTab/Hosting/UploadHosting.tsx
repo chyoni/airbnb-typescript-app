@@ -6,7 +6,12 @@ import {
   NavigationParams,
   ScrollView
 } from "react-navigation";
-import { Image, Alert, ActivityIndicator } from "react-native";
+import {
+  Image,
+  Alert,
+  ActivityIndicator,
+  KeyboardAvoidingView
+} from "react-native";
 import constants from "../../../../constants";
 import Theme from "../../../../Theme";
 import TextInput from "../../../Components/TextInput";
@@ -134,77 +139,79 @@ const UploadHosting: React.SFC<IProps> = ({ navigation }) => {
     }
   };
   return (
-    <ScrollView style={{ padding: 10 }}>
-      <Image
-        source={{ uri: thumbNail.uri }}
-        style={{ width: constants.width - 20, height: 350, borderRadius: 10 }}
-      />
-      <ScrollContainer>
-        <Horizontal>
-          <Label>숙소명</Label>
-          <TextInput
-            placeholder={"숙소명"}
-            value={caption.value}
-            onChangeText={caption.onChangeText}
-            width={constants.width - 60}
-          />
-        </Horizontal>
-        <Horizontal>
-          <Label>숙소위치</Label>
-          <TextInput
-            placeholder={"숙소위치"}
-            value={location.value}
-            onChangeText={location.onChangeText}
-            width={constants.width - 60}
-          />
-        </Horizontal>
-        <Horizontal>
-          <Label>체크인 가능날짜</Label>
-          <TextInput
-            placeholder={"체크인 가능날짜(Ex:2019-07-31)"}
-            value={checkIn.value}
-            onChangeText={checkIn.onChangeText}
-            width={constants.width - 60}
-          />
-        </Horizontal>
-        <Horizontal>
-          <Label>체크아웃 가능날짜</Label>
-          <TextInput
-            placeholder={"체크아웃 가능날짜(Ex:2019-08-31)"}
-            value={checkOut.value}
-            onChangeText={checkOut.onChangeText}
-            width={constants.width - 60}
-          />
-        </Horizontal>
-        <Horizontal>
-          <Label>최대 허용인원</Label>
-          <TextInput
-            placeholder={"최대 허용인원(Ex:4)"}
-            value={maxPeopleCount.value}
-            onChangeText={maxPeopleCount.onChangeText}
-            width={constants.width - 60}
-          />
-        </Horizontal>
-        <Horizontal>
-          <Label>가격</Label>
-          <TextInput
-            placeholder={"가격(Ex:10000)"}
-            value={price.value}
-            onChangeText={price.onChangeText}
-            width={constants.width - 60}
-          />
-        </Horizontal>
-        <TouchableOpacity onPress={upload}>
-          <UploadButton>
-            {loading ? (
-              <ActivityIndicator color={"white"} size={"small"} />
-            ) : (
-              <UploadInner>숙소 업로드</UploadInner>
-            )}
-          </UploadButton>
-        </TouchableOpacity>
-      </ScrollContainer>
-    </ScrollView>
+    <KeyboardAvoidingView style={{ flex: 1 }} enabled behavior={"height"}>
+      <ScrollView style={{ padding: 10 }}>
+        <Image
+          source={{ uri: thumbNail.uri }}
+          style={{ width: constants.width - 20, height: 350, borderRadius: 10 }}
+        />
+        <ScrollContainer>
+          <Horizontal>
+            <Label>숙소명</Label>
+            <TextInput
+              placeholder={"숙소명"}
+              value={caption.value}
+              onChangeText={caption.onChangeText}
+              width={constants.width - 60}
+            />
+          </Horizontal>
+          <Horizontal>
+            <Label>숙소위치</Label>
+            <TextInput
+              placeholder={"숙소위치"}
+              value={location.value}
+              onChangeText={location.onChangeText}
+              width={constants.width - 60}
+            />
+          </Horizontal>
+          <Horizontal>
+            <Label>체크인 가능날짜</Label>
+            <TextInput
+              placeholder={"체크인 가능날짜(Ex:2019-07-31)"}
+              value={checkIn.value}
+              onChangeText={checkIn.onChangeText}
+              width={constants.width - 60}
+            />
+          </Horizontal>
+          <Horizontal>
+            <Label>체크아웃 가능날짜</Label>
+            <TextInput
+              placeholder={"체크아웃 가능날짜(Ex:2019-08-31)"}
+              value={checkOut.value}
+              onChangeText={checkOut.onChangeText}
+              width={constants.width - 60}
+            />
+          </Horizontal>
+          <Horizontal>
+            <Label>최대 허용인원</Label>
+            <TextInput
+              placeholder={"최대 허용인원(Ex:4)"}
+              value={maxPeopleCount.value}
+              onChangeText={maxPeopleCount.onChangeText}
+              width={constants.width - 60}
+            />
+          </Horizontal>
+          <Horizontal>
+            <Label>가격</Label>
+            <TextInput
+              placeholder={"가격(Ex:10000)"}
+              value={price.value}
+              onChangeText={price.onChangeText}
+              width={constants.width - 60}
+            />
+          </Horizontal>
+          <TouchableOpacity onPress={upload}>
+            <UploadButton>
+              {loading ? (
+                <ActivityIndicator color={"white"} size={"small"} />
+              ) : (
+                <UploadInner>숙소 업로드</UploadInner>
+              )}
+            </UploadButton>
+          </TouchableOpacity>
+        </ScrollContainer>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 

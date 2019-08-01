@@ -5,7 +5,13 @@ import {
   NavigationState,
   NavigationParams
 } from "react-navigation";
-import { ScrollView, TouchableOpacity, Modal, Alert } from "react-native";
+import {
+  ScrollView,
+  TouchableOpacity,
+  Modal,
+  Alert,
+  KeyboardAvoidingView
+} from "react-native";
 import { useQuery, useMutation } from "react-apollo-hooks";
 import { FULL_POST, MAKE_RESERVE } from "../../Queries.queries";
 import {
@@ -381,74 +387,76 @@ const FullPost: React.SFC<IProps> = ({ navigation }) => {
           transparent={false}
           animationType={"slide"}
         >
-          <ModalView>
-            <ModalHeader>
-              <TouchableOpacity onPress={toggleReserveModal}>
-                <Ionicons
-                  name={"ios-close"}
-                  size={40}
-                  color={Theme.blackColor}
-                />
-              </TouchableOpacity>
-            </ModalHeader>
-            <ScrollView>
-              <ModalBody>
-                <ModalTitle>숙소 정보</ModalTitle>
-                <DataColumn>
-                  <Data>{`숙박 가능한 날짜👇`}</Data>
-                  <BoldData>{`${fullPost.checkIn} 부터 ${
-                    fullPost.checkOut
-                  }까지`}</BoldData>
-                </DataColumn>
-                <DataColumn>
-                  <Data>{`최대허용 가능인원 👇`}</Data>
-                  <BoldData>{`${fullPost.maxPeopleCount}명`}</BoldData>
-                </DataColumn>
-                <DataColumn>
-                  <Data>{`가격 👇`}</Data>
-                  <BoldData>{`${fullPost.price}원`}</BoldData>
-                </DataColumn>
-                <ModalTitle>예약 정보</ModalTitle>
-                <DataColumn>
-                  <BoldData>{`체크인 👇`}</BoldData>
-                  <TextInput
-                    placeholder={"체크인(EX:2019-11-11)"}
-                    onChangeText={checkInInput.onChangeText}
-                    value={checkInInput.value}
-                    width={constants.width - 20}
+          <KeyboardAvoidingView style={{ flex: 1 }} enabled behavior={"height"}>
+            <ModalView>
+              <ModalHeader>
+                <TouchableOpacity onPress={toggleReserveModal}>
+                  <Ionicons
+                    name={"ios-close"}
+                    size={40}
+                    color={Theme.blackColor}
                   />
-                </DataColumn>
-                <DataColumn>
-                  <BoldData>{`체크아웃 👇`}</BoldData>
-                  <TextInput
-                    placeholder={"체크아웃(EX:2019-11-20)"}
-                    onChangeText={checkOutInput.onChangeText}
-                    value={checkOutInput.value}
-                    width={constants.width - 20}
-                  />
-                </DataColumn>
-                <DataColumn>
-                  <BoldData>{`숙박 인원 👇`}</BoldData>
-                  <TextInput
-                    placeholder={"인원(EX:2)"}
-                    onChangeText={guestCountInput.onChangeText}
-                    value={guestCountInput.value}
-                    width={constants.width - 20}
-                  />
-                </DataColumn>
-                <ModalHorizontal>
-                  <TouchableOpacity onPress={onClickReserve}>
-                    <Button
-                      text={"예약하기"}
-                      color={Theme.redColor}
-                      width={"100px"}
-                      loading={loadingState}
+                </TouchableOpacity>
+              </ModalHeader>
+              <ScrollView>
+                <ModalBody>
+                  <ModalTitle>숙소 정보</ModalTitle>
+                  <DataColumn>
+                    <Data>{`숙박 가능한 날짜👇`}</Data>
+                    <BoldData>{`${fullPost.checkIn} 부터 ${
+                      fullPost.checkOut
+                    }까지`}</BoldData>
+                  </DataColumn>
+                  <DataColumn>
+                    <Data>{`최대허용 가능인원 👇`}</Data>
+                    <BoldData>{`${fullPost.maxPeopleCount}명`}</BoldData>
+                  </DataColumn>
+                  <DataColumn>
+                    <Data>{`가격 👇`}</Data>
+                    <BoldData>{`${fullPost.price}원`}</BoldData>
+                  </DataColumn>
+                  <ModalTitle>예약 정보</ModalTitle>
+                  <DataColumn>
+                    <BoldData>{`체크인 👇`}</BoldData>
+                    <TextInput
+                      placeholder={"체크인(EX:2019-11-11)"}
+                      onChangeText={checkInInput.onChangeText}
+                      value={checkInInput.value}
+                      width={constants.width - 20}
                     />
-                  </TouchableOpacity>
-                </ModalHorizontal>
-              </ModalBody>
-            </ScrollView>
-          </ModalView>
+                  </DataColumn>
+                  <DataColumn>
+                    <BoldData>{`체크아웃 👇`}</BoldData>
+                    <TextInput
+                      placeholder={"체크아웃(EX:2019-11-20)"}
+                      onChangeText={checkOutInput.onChangeText}
+                      value={checkOutInput.value}
+                      width={constants.width - 20}
+                    />
+                  </DataColumn>
+                  <DataColumn>
+                    <BoldData>{`숙박 인원 👇`}</BoldData>
+                    <TextInput
+                      placeholder={"인원(EX:2)"}
+                      onChangeText={guestCountInput.onChangeText}
+                      value={guestCountInput.value}
+                      width={constants.width - 20}
+                    />
+                  </DataColumn>
+                  <ModalHorizontal>
+                    <TouchableOpacity onPress={onClickReserve}>
+                      <Button
+                        text={"예약하기"}
+                        color={Theme.redColor}
+                        width={"100px"}
+                        loading={loadingState}
+                      />
+                    </TouchableOpacity>
+                  </ModalHorizontal>
+                </ModalBody>
+              </ScrollView>
+            </ModalView>
+          </KeyboardAvoidingView>
         </Modal>
         <Modal
           visible={commentModal}

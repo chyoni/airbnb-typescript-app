@@ -7,7 +7,13 @@ import {
 } from "react-navigation";
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
-import { Image, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
+import {
+  Image,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Alert,
+  KeyboardAvoidingView
+} from "react-native";
 import { useQuery, useMutation } from "react-apollo-hooks";
 import { SEE_USER, EDIT, MY_PROFILE } from "../../../Queries.queries";
 import {
@@ -187,53 +193,55 @@ const EditProfile: React.SFC<IProps> = ({ navigation }) => {
     const user = data.seeUser;
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <Container>
-          <AvatarField>
-            <TouchableOpacity onPress={pickImage}>
-              {user.avatar === null || "" ? (
-                <Image
-                  style={{ width: 130, height: 130, borderRadius: 65 }}
-                  source={require("../../../../assets/noPhoto.jpg")}
-                />
-              ) : (
-                <Image
-                  style={{ width: 130, height: 130, borderRadius: 65 }}
-                  source={{ uri: avatarState! }}
-                />
-              )}
-            </TouchableOpacity>
-          </AvatarField>
-          <InfoField>
-            <Column>
-              <Label>성📌</Label>
-              <TextInput
-                placeholder={"성(First Name)"}
-                onChangeText={firstName.onChangeText}
-                value={firstName.value}
-                width={constants.width - 100}
-              />
-            </Column>
-            <Column>
-              <Label>이름📌</Label>
-              <TextInput
-                placeholder={"이름(Last Name)"}
-                onChangeText={lastName.onChangeText}
-                value={lastName.value}
-                width={constants.width - 100}
-              />
-            </Column>
-            <Column>
-              <TouchableOpacity onPress={onClickEdit}>
-                <Button
-                  text={"수정 완료"}
-                  color={Theme.blueColor}
-                  width={constants.width - 100}
-                  loading={loading}
-                />
+        <KeyboardAvoidingView style={{ flex: 1 }} enabled behavior={"height"}>
+          <Container>
+            <AvatarField>
+              <TouchableOpacity onPress={pickImage}>
+                {user.avatar === null || "" ? (
+                  <Image
+                    style={{ width: 130, height: 130, borderRadius: 65 }}
+                    source={require("../../../../assets/noPhoto.jpg")}
+                  />
+                ) : (
+                  <Image
+                    style={{ width: 130, height: 130, borderRadius: 65 }}
+                    source={{ uri: avatarState! }}
+                  />
+                )}
               </TouchableOpacity>
-            </Column>
-          </InfoField>
-        </Container>
+            </AvatarField>
+            <InfoField>
+              <Column>
+                <Label>성📌</Label>
+                <TextInput
+                  placeholder={"성(First Name)"}
+                  onChangeText={firstName.onChangeText}
+                  value={firstName.value}
+                  width={constants.width - 100}
+                />
+              </Column>
+              <Column>
+                <Label>이름📌</Label>
+                <TextInput
+                  placeholder={"이름(Last Name)"}
+                  onChangeText={lastName.onChangeText}
+                  value={lastName.value}
+                  width={constants.width - 100}
+                />
+              </Column>
+              <Column>
+                <TouchableOpacity onPress={onClickEdit}>
+                  <Button
+                    text={"수정 완료"}
+                    color={Theme.blueColor}
+                    width={constants.width - 100}
+                    loading={loading}
+                  />
+                </TouchableOpacity>
+              </Column>
+            </InfoField>
+          </Container>
+        </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
     );
   } else {
